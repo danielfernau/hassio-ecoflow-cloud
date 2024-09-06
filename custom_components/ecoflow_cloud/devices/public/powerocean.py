@@ -9,7 +9,7 @@ from ...sensor import StatusSensorEntity, InWattsSolarSensorEntity, DecivoltSens
     AmpSensorEntity, RemainSensorEntity, DecihertzSensorEntity
 
 
-class PowerStream(BaseDevice):
+class PowerOcean(BaseDevice):
 
     def sensors(self, client: EcoflowApiClient) -> list[BaseSensorEntity]:
         return [
