@@ -1,0 +1,184 @@
+syntax = "proto3";
+
+// cmdFunc IDs
+// t[e[0] = "NONE_CMD_SETS"] = 0,
+// t[e[3] = "BP_CMD_SETS"] = 3,
+// t[e[4] = "PCS_CMD_SETS"] = 4,
+// t[e[96] = "EMS_CMD_SETS"] = 96, <<<<<<<<<<<< this is what we're dealing with here
+// t[e[97] = "MPPT_CMD_SETS"] = 97,
+// t[e[53] = "IOT_CMD_SETS"] = 53,
+// t[e[7] = "DAB_CMD_SETS"] = 7,
+// t[e[2] = "ADPT_CMD_SETS"] = 2,
+// t[e[210] = "AFCI_CMD_SETS"] = 210,
+// t[e[50] = "APP_CMD_SETS"] = 50,
+
+// EMS_CMD_SET IDs
+// t[e[0] = "EMS_CMD_ID_NONE"] = 0,
+// t[e[1] = "EMS_CMD_ID_HEARTBEAT_REPORT"] = 1, <<<<<<<<<<<<<<<<<<<<<<<<<< present
+// t[e[2] = "EMS_CMD_ID_SYS_METER_REPORT"] = 2,
+// t[e[3] = "EMS_CMD_ID_ERROR_CODE_REPORT"] = 3,
+// t[e[7] = "EMS_CMD_ID_BP_HEARTBEAT_REPORT"] = 7, <<<<<<<<<<<<<<<<<<<<<<< we also see this
+// t[e[8] = "EMS_CMD_ID_CHANGE_REPORT"] = 8, <<<<<<<<<<<<<<<<<<<<<<<<<<<<< we see this often
+// t[e[9] = "EMS_CMD_ID_SYS_ERROR_MASK_CODE_REPORT"] = 9,
+// t[e[10] = "EMS_CMD_ID_ALL_TIMER_TASK_REPORT"] = 10,
+// t[e[11] = "EMS_CMD_ID_ECOLOGY_DEV_REPORT"] = 11,
+// t[e[12] = "EMS_CMD_ID_MASTER_SLAVE_DEV_LIST_REPORT"] = 12,
+// t[e[13] = "EMS_CMD_ID_PARAM_CHANGE_REPORT"] = 13,
+// t[e[17] = "EMS_CMD_ID_STATE_CHANGE_REPORT"] = 17,
+// t[e[97] = "EMS_CMD_ID_ENERGY_STREAM_SWITCH"] = 97,
+// t[e[98] = "EMS_CMD_ID_SYS_WORKMODE_SET"] = 98,
+// t[e[99] = "EMS_CMD_ID_SYS_BACKUP_EVENT_SET"] = 99,
+// t[e[100] = "EMS_CMD_ID_SYS_KEEP_SOC_SET"] = 100,
+// t[e[101] = "EMS_CMD_ID_SYS_MAX_FEED_POWER_SET"] = 101,
+// t[e[102] = "EMS_CMD_ID_SYS_OFF_GRID_SET"] = 102,
+// t[e[103] = "EMS_CMD_ID_SYS_PARAM_GET"] = 103,
+// t[e[104] = "EMS_CMD_ID_SYS_RTC_GET"] = 104,
+// t[e[105] = "EMS_CMD_ID_SYS_ON_OFF_MACHINE_SET"] = 105,
+// t[e[106] = "EMS_CMD_ID_ECOLOGY_DEV_GET"] = 106,
+// t[e[107] = "EMS_CMD_ID_ECOLOGY_DEV_BIND"] = 107,
+// t[e[108] = "EMS_CMD_ID_ECOLOGY_DEV_REPORT_PERIO"] = 108,
+// t[e[109] = "EMS_CMD_ID_ECOLOGY_DEV_PARAM_SET"] = 109,
+// t[e[110] = "EMS_CMD_ID_ECOLOGY_DEV_BIND_LIST_GET"] = 110,
+// t[e[112] = "EMS_CMD_ID_SYS_BAT_CHG_DSG_SET"] = 112,
+// t[e[113] = "EMS_CMD_ID_SET_SAFETY_PAREM"] = 113,
+// t[e[114] = "EMS_CMD_ID_GET_ERROR_CODE"] = 114,
+// t[e[115] = "EMS_CMD_ID_SYS_FEED_POWER_SET"] = 115,
+// t[e[116] = "EMS_CMD_ID_SYS_CTRL_REPORT_RATE"] = 116,
+// t[e[117] = "EMS_CMD_ID_SYS_METER_CFG_SET"] = 117,
+// t[e[118] = "EMS_CMD_ID_SYS_ERROR_ERASE_CODE"] = 118,
+// t[e[119] = "EMS_CMD_ID_SYS_CTRL_LED"] = 119,
+// t[e[120] = "EMS_CMD_ID_SYS_ERROR_MASK_CODE"] = 120,
+// t[e[121] = "EMS_CMD_ID_SYS_FACTORY_RESET"] = 121,
+// t[e[122] = "EMS_CMD_ID_SYS_TYPE_CFG_SET"] = 122,
+// t[e[123] = "EMS_CMD_ID_MUL_PEAK_SET"] = 123,
+// t[e[124] = "EMS_CMD_ID_SG_READY_SET"] = 124,
+// t[e[125] = "EMS_CMD_ID_TIMER_TASK_SET"] = 125,
+// t[e[126] = "EMS_CMD_ID_TIMER_TASK_GET"] = 126,
+// t[e[127] = "EMS_CMD_ID_ALL_TIMER_TASK_GET"] = 127,
+// t[e[128] = "EMS_CMD_ID_SYS_SELF_SET"] = 128,
+// t[e[129] = "EMS_CMD_ID_AFCI_SELF_TEST"] = 129,
+// t[e[130] = "EMS_CMD_ID_AFCI_ERROR_ERASE"] = 130,
+// t[e[131] = "EMS_CMD_ID_AFCI_PARAM_SET"] = 131,
+// t[e[132] = "EMS_CMD_ID_PV_INV_METER_GET"] = 132,
+// t[e[133] = "EMS_CMD_ID_PV_INV_METER_CFG_SET"] = 133,
+// t[e[134] = "EMS_CMD_ID_DEVICE_ROLE_SET"] = 134,
+// t[e[135] = "EMS_CMD_ID_CTRL_DEVICE_SET"] = 135,
+// t[e[136] = "EMS_CMD_ID_MASTER_DEV_SET"] = 136,
+// t[e[137] = "EMS_CMD_ID_EMS_PARAM_SET"] = 137,
+// t[e[138] = "EMS_CMD_ID_EMS_ENERGY_EFFICIENT_SET"] = 138,
+// t[e[33] = "EMS_CMD_ID_ENERGY_STREAM_REPORT"] = 33,
+// t[e[34] = "EMS_CMD_ID_ENERGY_STREAM_DETAIL"] = 34,
+// t[e[35] = "EMS_CMD_ID_SYS_RTC_SYNC"] = 35,
+// t[e[36] = "EMS_CMD_ID_SYS_EVENT_REPORT"] = 36,
+// t[e[37] = "EMS_CMD_ID_GET_PAREM"] = 37,
+// t[e[38] = "EMS_CMD_ID_SG_READY_DETAIL"] = 38,
+// t[e[39] = "EMS_CMD_ID_PV_INV_ENERGY_STREAM_REPORT"] = 39, <<<<<<<<<<<<<<<<<<<< this is present
+// t[e[40] = "EMS_CMD_ID_ECOLOGY_DEV_ENERGY_STREAM_DETAIL"] = 40,
+// t[e[41] = "EMS_CMD_ID_ECOLOGY_DEV_ENERGY_STREAM_REPORT"] = 41,
+// t[e[42] = "EMS_CMD_ID_ECOLOGY_DEV_BIND_LIST_REPORT"] = 42,
+// t[e[50] = "EMS_CMD_ID_ENERGY_STREAM_REPORT_PARALLEL"] = 50, <<<<<<<<<<<<<<<<<< this is present, too
+// t[e[51] = "EMS_CMD_ID_ENERGY_STREAM_DETAIL_PARALLEL"] = 51,
+// t[e[161] = "EMS_CMD_ID_MODULE_CHG_DSG_MAX_GET"] = 161,
+// t[e[162] = "EMS_CMD_ID_MODULE_CHG_DSG_PWR_SET"] = 162,
+// t[e[163] = "EMS_CMD_ID_MODULE_SELF_CHECK_SET"] = 163,
+// t[e[164] = "EMS_CMD_ID_MODULE_SELF_CHECK_STAT_SYNC"] = 164,
+// t[e[165] = "EMS_CMD_ID_HEARTBEAT"] = 165,
+// t[e[166] = "EMS_CMD_ID_MODE_SYNC"] = 166,
+// t[e[167] = "EMS_CMD_ID_DATA_SYNC"] = 167,
+// t[e[168] = "EMS_CMD_ID_OPEN_LOOP"] = 168,
+// t[e[169] = "EMS_CMD_ID_GET_SAFETY_PARAM"] = 169,
+// t[e[170] = "EMS_CMD_ID_MODULE_BUS_VOLT_SET"] = 170,
+// t[e[171] = "EMS_CMD_ID_MPPT_GET_VOC"] = 171,
+// t[e[172] = "EMS_CMD_ID_UPGRADE_NOTIFY"] = 172,
+// t[e[173] = "EMS_CMD_ID_ISULATION_CHECK"] = 173,
+// t[e[174] = "EMS_CMD_ID_LOWLIGHT_CHECK"] = 174,
+// t[e[175] = "EMS_CMD_ID_BP_CALIB_LIMIT_PCS_POWER"] = 175,
+// t[e[177] = "EMS_CMD_ID_STA_SYNC"] = 177,
+// t[e[178] = "EMS_CMD_ID_BP_ACTIVE_CAL_DATA_SYNC"] = 178,
+// t[e[179] = "EMS_CMD_ID_METER_SYNC"] = 179,
+// t[e[180] = "EMS_CMD_ID_GET_DEV_MODEL"] = 180,
+// t[e[181] = "EMS_CMD_ID_SOFT_START_SET"] = 181,
+// t[e[182] = "EMS_CMD_ID_TIMER_SYNC_BP"] = 182,
+// t[e[183] = "EMS_CMD_ID_RESET_PRODUCT_TYPE"] = 183,
+// t[e[184] = "EMS_CMD_ID_PARALLEL_STATE_SYNC"] = 184,
+// t[e[185] = "EMS_CMD_ID_PARALLEL_DATA_SYNC"] = 185,
+// t[e[186] = "EMS_CMD_ID_PARALLEL_DATA_EMS_SYNC"] = 186,
+// t[e[187] = "EMS_CMD_ID_PARALLEL_DATA_EMS_SET"] = 187,
+// t[e[188] = "EMS_CMD_ID_PARALLEL_DATA_EMS_SET_ACK"] = 188,
+// t[e[189] = "EMS_CMD_ID_PARALLEL_GET_MASTER_DATA"] = 189,
+// t[e[190] = "EMS_CMD_ID_PARALLEL_POWER_SET"] = 190,
+// t[e[191] = "EMS_CMD_ID_PARALLEL_POWER_SET_ACK"] = 191,
+// t[e[192] = "EMS_CMD_ID_PARALLEL_METER_SYNC"] = 192,
+// t[e[193] = "EMS_CMD_ID_PARALLEL_METER_DEV_SET"] = 193,
+// t[e[194] = "EMS_CMD_ID_PARALLEL_CFG_EMS_SYNC"] = 194,
+// t[e[195] = "EMS_CMD_ID_REQ_DATA"] = 195,
+
+message EMS_CMD_ID_HEARTBEAT_REPORT {
+    // cmdFunc: 96, cmdId: 1
+    repeated int32 bytes_1 = 1;
+    uint32 cmdFunc = 2; // OK, 96
+    int32 int_3 = 3;
+    int32 int_4 = 4;
+    int32 int_5 = 5;
+    int32 int_6 = 6;
+    int32 int_7 = 7;
+    int32 int_8 = 8;
+    int32 int_9 = 9;
+    int32 int_10 = 10;
+    int32 int_14 = 11;
+    int32 int_15 = 12;
+    int32 int_16 = 13;
+    int32 int_17 = 14;
+    string device_sn = 24; // OK
+}
+
+message EMS_CMD_ID_BP_HEARTBEAT_REPORT {
+    // cmdFunc: 96, cmdId: 7
+    repeated int32 bytes_1 = 1;
+    int32 int_2 = 2;
+    int32 int_3 = 3;
+    int32 int_4 = 4;
+    int32 int_5 = 5;
+    int32 int_6 = 6;
+    int32 int_7 = 7;
+    int32 int_8 = 8;
+    int32 int_9 = 9;
+    int32 int_10 = 10;
+    int32 int_14 = 11;
+    int32 int_15 = 12;
+    int32 int_16 = 13;
+    int32 int_17 = 14;
+    repeated string device_sn = 15;
+}
+
+message EMS_CMD_ID_CHANGE_REPORT {
+    // cmdFunc: 96, cmdId: 8
+    repeated int32 bytes_1 = 1; // dc 4d f7 72
+    uint32 cmdFunc0 = 2; // 96
+    int32 int_3 = 3; // 32
+    int32 int_4 = 4; // 2
+    int32 int_5 = 5; // 1
+    int32 int_6 = 6; // 1
+    int32 int_7 = 7; // 3
+    uint32 cmdFunc = 8; // 96, OK
+    uint32 cmdId = 9; // 8, OK
+    int32 int_10 = 10; // 4, evBindList
+    int32 int_11 = 11; // 1, sysCalStat
+    int32 int_14 = 12; // 1791052, sysBatChgUpLimit
+    int32 int_15 = 13; // 21249, sysBatDsgDownLimit
+    int32 int_16 = 14; // 3, sysGridSta
+    int32 int_17 = 15; // 1
+    optional string device_sn = 24;
+}
+
+message EMS_CMD_ID_ENERGY_STREAM_REPORT_PARALLEL {
+    // cmdFunc: 96, cmdId: 50
+    // topic /app/device/property/HJ37ZDH5ZG4C0054
+    // mpptPwr, float, 97.1748046875
+    // sysLoadPwr, float, 1397.1748046875
+    // sysGridPwr, float, -17.61250114440918
+    // bpPwr, float, -1414.787353515625
+    // bpSoc, uint32, 61
+    //
+}
+
