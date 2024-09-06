@@ -113,26 +113,127 @@ syntax = "proto3";
 // t[e[194] = "EMS_CMD_ID_PARALLEL_CFG_EMS_SYNC"] = 194,
 // t[e[195] = "EMS_CMD_ID_REQ_DATA"] = 195,
 
-message EMS_CMD_ID_HEARTBEAT_REPORT {
+message EmsCmdIdHeartbeatReport {
     // cmdFunc: 96, cmdId: 1
-    repeated int32 bytes_1 = 1;
-    uint32 cmdFunc = 2; // OK, 96
-    int32 int_3 = 3;
-    int32 int_4 = 4;
-    int32 int_5 = 5;
-    int32 int_6 = 6;
-    int32 int_7 = 7;
-    int32 int_8 = 8;
-    int32 int_9 = 9;
-    int32 int_10 = 10;
-    int32 int_14 = 11;
-    int32 int_15 = 12;
-    int32 int_16 = 13;
-    int32 int_17 = 14;
-    string device_sn = 24; // OK
+    float bpRemainWatth = 1;
+    uint32 bpDsgTime = 2;
+    bool rateCtrlSwtich = 3;
+    uint32 sysRateCtrlTime = 4;
+    uint32 duraTime = 5;
+    float pcsActPwr = 10;
+    float pcsAcFreq = 11;
+
+//    case 12:
+//        n.pcsAPhase = p.sys.PhaseInfo.decode(e, e.uint32());
+//        break;
+//    case 13:
+//        n.pcsBPhase = p.sys.PhaseInfo.decode(e, e.uint32());
+//        break;
+//    case 14:
+//        n.pcsCPhase = p.sys.PhaseInfo.decode(e, e.uint32());
+//        break;
+//        case 1:
+//            n.vol = e.float();
+//            break;
+//        case 2:
+//            n.amp = e.float();
+//            break;
+//        case 3:
+//            n.actPwr = e.float();
+//            break;
+//        case 4:
+//            n.reactPwr = e.float();
+//            break;
+//        case 5:
+//            n.apparentPwr = e.float();
+//            break;
+//
+
+//    case 15:
+//        n.pcsLoadInfo && n.pcsLoadInfo.length || (n.pcsLoadInfo = []),
+//        n.pcsLoadInfo.push(p.sys.LoadInfo.decode(e, e.uint32()));
+//        break;
+
+    float pcsBusVolt = 16;
+    float pcsLeakAmp = 17;
+    float pcsDci = 18;
+    float pcsDcv = 19;
+
+//    case 30:
+//        n.meterHeartBeat && n.meterHeartBeat.length || (n.meterHeartBeat = []),
+//        n.meterHeartBeat.push(p.sys.MeterStaReport.decode(e, e.uint32()));
+//        break;
+//    case 31:
+//        n.mpptHeartBeat && n.mpptHeartBeat.length || (n.mpptHeartBeat = []),
+//        n.mpptHeartBeat.push(p.sys.MpptStaReport.decode(e, e.uint32()));
+//        break;
+
+    float pcsVbusRef = 32;
+    float pcsActivePowerRef = 33;
+    float pcsActivePowerLimitUp = 34;
+    float pcsActivePowerLimitDn = 35;
+    float pcsBpPower = 36;
+    float pcsBpPowerChgLimit = 37;
+    float pcsRelayStateShow = 38;
+    float pcsGridSafetyFuncRecord = 39;
+    float pcsGridSafetyStateRecord = 40;
+    float pcsGridInvErrorRms = 41;
+    float pcsPfcCurReal = 42;
+    float pcsPfcCurRef = 43;
+    float pcsReactivePowerRef = 44;
+    float pcsMeterPower = 45;
+    float pcsCommInterfaceState = 46;
+    float pcsAverageVoltage = 47;
+    float pcsVgridThd = 48;
+    float pcsInterruptOccupancyRate = 49;
+    float emsMpptSelfcheckState = 50;
+    uint32 emsMpptStartupState = 51;
+    uint32 emsBpSelfcheckState = 52;
+    uint32 emsBpStartupState = 53;
+    uint32 emsPcsSelfcheckState = 54;
+    uint32 emsPcsStartupState = 55;
+    float emsBusVolt = 56;
+    uint32 emsActiveOffGridCmd = 57;
+    uint32 emsBpAliveNum = 58;
+    float emsBpPower = 59;
+    float emsBpChg = 60;
+    float emsBpDsg = 61;
+    uint32 emsBpChgRequest = 62;
+    uint32 emsSelfUsedCnt = 63;
+    uint32 emsAcMakeupTriggleSoc = 64;
+    uint32 emsAcMakeupExitSoc = 65;
+    uint32 emsAcMakeupMinSoc = 66;
+    uint32 emsAcMakeupCnt = 67;
+    uint32 emsStartFsmState = 68;
+    uint32 emsMpptRunState = 69;
+    uint32 emsMpptModStat = 70;
+    uint32 emsStopCmd = 71;
+    uint32 emsSysCfg = 72;
+    uint32 emsLpState = 73;
+    uint32 emsLpType = 74;
+    uint32 emsLpMpptCnt = 75;
+    uint32 emsLpBpCnt = 76;
+    uint32 emsLpStateFlag = 77;
+    uint32 emsSocCalibState = 78;
+    uint32 emsSocCalibRequest = 79;
+    uint32 emsMpptHbState = 80;
+    float emsNtcTempMax = 81;
+    float emsBusVoltErrSlidFilter = 82;
+    float emsBusVoltRipple = 83;
+    float emsPvInvPwr = 84;
+    float mpptBusVolRef = 100;
+    float dcdcBusVolRef = 101;
+    float dcdcBpVol = 102;
+    float dcdcInductanceCurr = 103;
+    float innerTemperature = 104;
+    uint32 powerLimitMode = 105;
+    uint32 invRatedPower = 106;
+    uint32 dcdcStateRecord = 107;
+    uint32 emsWorkMode = 108;
+    float pcsBackupPwr = 109;
 }
 
-message EMS_CMD_ID_BP_HEARTBEAT_REPORT {
+message EmsCmdIdBpHeartbeatReport {
     // cmdFunc: 96, cmdId: 7
     repeated int32 bytes_1 = 1;
     int32 int_2 = 2;
@@ -148,39 +249,39 @@ message EMS_CMD_ID_BP_HEARTBEAT_REPORT {
     int32 int_15 = 12;
     int32 int_16 = 13;
     int32 int_17 = 14;
-    optional string moduleSn = 15;
+    string moduleSn = 15;
 }
 
-message EMS_CMD_ID_CHANGE_REPORT {
+message EmsCmdIdChangeReport {
     // cmdFunc: 96, cmdId: 8
-    optional bytes pdata = 1;
-    optional uint32 src = 2;
-    optional uint32 dest = 3;
-    optional uint32 dSrc = 4;
-    optional uint32 dDest = 5;
-    optional uint32 encType = 6;
-    optional uint32 checkType = 7;
-    optional uint32 cmdFunc = 8;
-    optional uint32 cmdId = 9;
-    optional uint32 dataLen = 10;
-    optional uint32 needAck = 11;
-    optional uint32 isAck = 12;
+    bytes pdata = 1;
+    uint32 src = 2;
+    uint32 dest = 3;
+    uint32 d_src = 4;
+    uint32 d_dest = 5;
+    uint32 encType = 6;
+    uint32 checkType = 7;
+    uint32 cmdFunc = 8;
+    uint32 cmdId = 9;
+    uint32 dataLen = 10;
+    uint32 needAck = 11;
+    uint32 isAck = 12;
     // field 13 does not exist
-    optional uint32 seq = 14;
-    optional uint32 productId = 15;
-    optional uint32 version = 16;
-    optional uint32 payloadVer = 17;
-    optional uint32 timeSnap = 18;
-    optional uint32 isRwCmd = 19;
-    optional uint32 isQueue = 20;
-    optional uint32 ackType = 21;
-    optional string code = 22;
-    optional string from = 23;
-    optional string moduleSn = 24;
-    optional string deviceSn = 25;
+    uint32 seq = 14;
+    uint32 productId = 15;
+    uint32 version = 16;
+    uint32 payloadVer = 17;
+    uint32 timeSnap = 18;
+    uint32 isRwCmd = 19;
+    uint32 isQueue = 20;
+    uint32 ackType = 21;
+    string code = 22;
+    string from = 23;
+    string moduleSn = 24;
+    string deviceSn = 25;
 }
 
-message EMS_CMD_ID_ENERGY_STREAM_REPORT_PARALLEL {
+message EmsCmdIdEnergyStreamReportParallel {
     // cmdFunc: 96, cmdId: 50
     // topic /app/device/property/HJ37ZDH5ZG4C0054
     // mpptPwr, float, 97.1748046875
@@ -190,4 +291,3 @@ message EMS_CMD_ID_ENERGY_STREAM_REPORT_PARALLEL {
     // bpSoc, uint32, 61
     //
 }
-

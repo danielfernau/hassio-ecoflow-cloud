@@ -121,22 +121,22 @@ class PowerOcean(BaseDevice):
 
                 _LOGGER.debug("cmd id %u payload \"%s\"", packet.msg.cmd_id, payload.hex())
 
-                if packet.msg.cmd_id == 8:
-                    changereport = powerocean.EMS_CMD_ID_CHANGE_REPORT()
-                    changereport.ParseFromString(packet.msg.pdata)
+                if packet.msg.cmd_id != 1:
+                    _LOGGER.info("Unsupported EcoPacket cmd id %u", packet.msg.cmd_id)
 
-                    for descriptor in changereport.DESCRIPTOR.fields:
-                        if not changereport.HasField(descriptor.name):
+                else:
+                    heartbeat = powerocean.EmsCmdIdHeartbeatReport()
+                    heartbeat.ParseFromString(packet.msg.pdata)
+
+                    for descriptor in heartbeat.DESCRIPTOR.fields:
+                        if not heartbeat.HasField(descriptor.name):
                             continue
 
-                        raw["params"][descriptor.name] = getattr(changereport, descriptor.name)
+                        raw["params"][descriptor.name] = getattr(heartbeat, descriptor.name)
 
                     _LOGGER.info("Found %u fields", len(raw["params"]))
 
                     raw["timestamp"] = utcnow()
-
-                else:
-                    _LOGGER.info("Unsupported EcoPacket cmd id %u", packet.msg.cmd_id)
 
                 if packet.ByteSize() >= len(payload):
                     break
