@@ -148,27 +148,36 @@ message EMS_CMD_ID_BP_HEARTBEAT_REPORT {
     int32 int_15 = 12;
     int32 int_16 = 13;
     int32 int_17 = 14;
-    repeated string device_sn = 15;
+    optional string moduleSn = 15;
 }
 
 message EMS_CMD_ID_CHANGE_REPORT {
     // cmdFunc: 96, cmdId: 8
-    repeated int32 bytes_1 = 1; // dc 4d f7 72
-    uint32 cmdFunc0 = 2; // 96
-    int32 int_3 = 3; // 32
-    int32 int_4 = 4; // 2
-    int32 int_5 = 5; // 1
-    int32 int_6 = 6; // 1
-    int32 int_7 = 7; // 3
-    uint32 cmdFunc = 8; // 96, OK
-    uint32 cmdId = 9; // 8, OK
-    int32 int_10 = 10; // 4, evBindList
-    int32 int_11 = 11; // 1, sysCalStat
-    int32 int_14 = 12; // 1791052, sysBatChgUpLimit
-    int32 int_15 = 13; // 21249, sysBatDsgDownLimit
-    int32 int_16 = 14; // 3, sysGridSta
-    int32 int_17 = 15; // 1
-    optional string device_sn = 24;
+    optional bytes pdata = 1;
+    optional uint32 src = 2;
+    optional uint32 dest = 3;
+    optional uint32 dSrc = 4;
+    optional uint32 dDest = 5;
+    optional uint32 encType = 6;
+    optional uint32 checkType = 7;
+    optional uint32 cmdFunc = 8;
+    optional uint32 cmdId = 9;
+    optional uint32 dataLen = 10;
+    optional uint32 needAck = 11;
+    optional uint32 isAck = 12;
+    // field 13 does not exist
+    optional uint32 seq = 14;
+    optional uint32 productId = 15;
+    optional uint32 version = 16;
+    optional uint32 payloadVer = 17;
+    optional uint32 timeSnap = 18;
+    optional uint32 isRwCmd = 19;
+    optional uint32 isQueue = 20;
+    optional uint32 ackType = 21;
+    optional string code = 22;
+    optional string from = 23;
+    optional string moduleSn = 24;
+    optional string deviceSn = 25;
 }
 
 message EMS_CMD_ID_ENERGY_STREAM_REPORT_PARALLEL {

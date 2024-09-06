@@ -111,7 +111,7 @@ class PowerOcean(BaseDevice):
 
     def _prepare_data(self, raw_data) -> dict[str, any]:
         raw = {"params": {}}
-        from .proto import ecopacket_pb2 as ecopacket, powerstream_pb2 as powerstream
+        from .proto import ecopacket_pb2 as ecopacket, powerocean_pb2 as powerocean
         try:
             payload =raw_data
 
@@ -121,22 +121,22 @@ class PowerOcean(BaseDevice):
 
                 _LOGGER.debug("cmd id %u payload \"%s\"", packet.msg.cmd_id, payload.hex())
 
-                if packet.msg.cmd_id != 8:
-                    _LOGGER.info("Unsupported EcoPacket cmd id %u", packet.msg.cmd_id)
+                if packet.msg.cmd_id == 8:
+                    changereport = powerocean.EMS_CMD_ID_CHANGE_REPORT()
+                    changereport.ParseFromString(packet.msg.pdata)
 
-                else:
-                    heartbeat = powerstream.InverterHeartbeat()
-                    heartbeat.ParseFromString(packet.msg.pdata)
-
-                    for descriptor in heartbeat.DESCRIPTOR.fields:
-                        if not heartbeat.HasField(descriptor.name):
+                    for descriptor in changereport.DESCRIPTOR.fields:
+                        if not changereport.HasField(descriptor.moduleSn):
                             continue
 
-                        raw["params"][descriptor.name] = getattr(heartbeat, descriptor.name)
+                        raw["params"][descriptor.moduleSn] = getattr(changereport, descriptor.moduleSn)
 
                     _LOGGER.info("Found %u fields", len(raw["params"]))
 
                     raw["timestamp"] = utcnow()
+
+                else:
+                    _LOGGER.info("Unsupported EcoPacket cmd id %u", packet.msg.cmd_id)
 
                 if packet.ByteSize() >= len(payload):
                     break
