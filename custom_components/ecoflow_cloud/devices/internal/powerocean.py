@@ -126,10 +126,10 @@ class PowerOcean(BaseDevice):
                     changereport.ParseFromString(packet.msg.pdata)
 
                     for descriptor in changereport.DESCRIPTOR.fields:
-                        if not changereport.HasField(descriptor.moduleSn):
+                        if not changereport.HasField(descriptor.name):
                             continue
 
-                        raw["params"][descriptor.moduleSn] = getattr(changereport, descriptor.moduleSn)
+                        raw["params"][descriptor.name] = getattr(changereport, descriptor.name)
 
                     _LOGGER.info("Found %u fields", len(raw["params"]))
 
