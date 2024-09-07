@@ -18,75 +18,75 @@ from ...api import EcoflowApiClient
 # from ..select import DictSelectEntity
 _LOGGER = logging.getLogger(__name__)
 
+
 class PowerOcean(BaseDevice):
     def sensors(self, client: EcoflowApiClient) -> list[BaseSensorEntity]:
         return [
-            InWattsSolarSensorEntity(client, self,  "pv1_input_watts", "Solar 1 Watts"),
-            DecivoltSensorEntity(client, self,  "pv1_input_volt", "Solar 1 Input Potential"),
-            CentivoltSensorEntity(client, self,  "pv1_op_volt", "Solar 1 Op Potential"),
-            DeciampSensorEntity(client, self,  "pv1_input_cur", "Solar 1 Currrent"),
-            DecicelsiusSensorEntity(client, self,  "pv1_temp", "Solar 1 Temperature"),
-            MiscSensorEntity(client, self,  "pv1_relay_status", "Solar 1 Relay Status"),
-            MiscSensorEntity(client, self,  "pv1_error_code", "Solar 1 Error Code", False),
-            MiscSensorEntity(client, self,  "pv1_warning_code", "Solar 1 Warning Code", False),
-            MiscSensorEntity(client, self,  "pv1_status", "Solar 1 Status", False),
+            InWattsSolarSensorEntity(client, self, "pv1_input_watts", "Solar 1 Watts"),
+            DecivoltSensorEntity(client, self, "pv1_input_volt", "Solar 1 Input Potential"),
+            CentivoltSensorEntity(client, self, "pv1_op_volt", "Solar 1 Op Potential"),
+            DeciampSensorEntity(client, self, "pv1_input_cur", "Solar 1 Currrent"),
+            DecicelsiusSensorEntity(client, self, "pv1_temp", "Solar 1 Temperature"),
+            MiscSensorEntity(client, self, "pv1_relay_status", "Solar 1 Relay Status"),
+            MiscSensorEntity(client, self, "pv1_error_code", "Solar 1 Error Code", False),
+            MiscSensorEntity(client, self, "pv1_warning_code", "Solar 1 Warning Code", False),
+            MiscSensorEntity(client, self, "pv1_status", "Solar 1 Status", False),
 
-            InWattsSolarSensorEntity(client, self,  "pv2_input_watts", "Solar 2 Watts"),
-            DecivoltSensorEntity(client, self,  "pv2_input_volt", "Solar 2 Input Potential"),
-            CentivoltSensorEntity(client, self,  "pv2_op_volt", "Solar 2 Op Potential"),
-            DeciampSensorEntity(client, self,  "pv2_input_cur", "Solar 2 Current"),
-            DecicelsiusSensorEntity(client, self,  "pv2_temp", "Solar 2 Temperature"),
-            MiscSensorEntity(client, self,  "pv2_relay_status", "Solar 2 Relay Status"),
-            MiscSensorEntity(client, self,  "pv2_error_code", "Solar 2 Error Code", False),
-            MiscSensorEntity(client, self,  "pv2_warning_code", "Solar 2 Warning Code", False),
-            MiscSensorEntity(client, self,  "pv2_status", "Solar 2 Status", False),
+            InWattsSolarSensorEntity(client, self, "pv2_input_watts", "Solar 2 Watts"),
+            DecivoltSensorEntity(client, self, "pv2_input_volt", "Solar 2 Input Potential"),
+            CentivoltSensorEntity(client, self, "pv2_op_volt", "Solar 2 Op Potential"),
+            DeciampSensorEntity(client, self, "pv2_input_cur", "Solar 2 Current"),
+            DecicelsiusSensorEntity(client, self, "pv2_temp", "Solar 2 Temperature"),
+            MiscSensorEntity(client, self, "pv2_relay_status", "Solar 2 Relay Status"),
+            MiscSensorEntity(client, self, "pv2_error_code", "Solar 2 Error Code", False),
+            MiscSensorEntity(client, self, "pv2_warning_code", "Solar 2 Warning Code", False),
+            MiscSensorEntity(client, self, "pv2_status", "Solar 2 Status", False),
 
-            MiscSensorEntity(client, self,  "bp_type", "Battery Type", False),
-            LevelSensorEntity(client, self,  "bat_soc", "Battery Charge"),
-            DeciwattsSensorEntity(client, self,  "bat_input_watts", "Battery Input Watts"),
-            DecivoltSensorEntity(client, self,  "bat_input_volt", "Battery Input Potential"),
-            DecivoltSensorEntity(client, self,  "bat_op_volt", "Battery Op Potential"),
-            AmpSensorEntity(client, self,  "bat_input_cur", "Battery Input Current"),
-            DecicelsiusSensorEntity(client, self,  "bat_temp", "Battery Temperature"),
-            RemainSensorEntity(client, self,  "battery_charge_remain", "Charge Time"),
-            RemainSensorEntity(client, self,  "battery_discharge_remain", "Discharge Time"),
-            MiscSensorEntity(client, self,  "bat_error_code", "Battery Error Code", False),
-            MiscSensorEntity(client, self,  "bat_warning_code", "Battery Warning Code", False),
-            MiscSensorEntity(client, self,  "bat_status", "Battery Status", False),
+            MiscSensorEntity(client, self, "bp_type", "Battery Type", False),
+            LevelSensorEntity(client, self, "bat_soc", "Battery Charge"),
+            DeciwattsSensorEntity(client, self, "bat_input_watts", "Battery Input Watts"),
+            DecivoltSensorEntity(client, self, "bat_input_volt", "Battery Input Potential"),
+            DecivoltSensorEntity(client, self, "bat_op_volt", "Battery Op Potential"),
+            AmpSensorEntity(client, self, "bat_input_cur", "Battery Input Current"),
+            DecicelsiusSensorEntity(client, self, "bat_temp", "Battery Temperature"),
+            RemainSensorEntity(client, self, "battery_charge_remain", "Charge Time"),
+            RemainSensorEntity(client, self, "battery_discharge_remain", "Discharge Time"),
+            MiscSensorEntity(client, self, "bat_error_code", "Battery Error Code", False),
+            MiscSensorEntity(client, self, "bat_warning_code", "Battery Warning Code", False),
+            MiscSensorEntity(client, self, "bat_status", "Battery Status", False),
 
-            DecivoltSensorEntity(client, self,  "llc_input_volt", "LLC Input Potential", False),
-            DecivoltSensorEntity(client, self,  "llc_op_volt", "LLC Op Potential", False),
-            MiscSensorEntity(client, self,  "llc_error_code", "LLC Error Code", False),
-            MiscSensorEntity(client, self,  "llc_warning_code", "LLC Warning Code", False),
-            MiscSensorEntity(client, self,  "llc_status", "LLC Status", False),
+            DecivoltSensorEntity(client, self, "llc_input_volt", "LLC Input Potential", False),
+            DecivoltSensorEntity(client, self, "llc_op_volt", "LLC Op Potential", False),
+            MiscSensorEntity(client, self, "llc_error_code", "LLC Error Code", False),
+            MiscSensorEntity(client, self, "llc_warning_code", "LLC Warning Code", False),
+            MiscSensorEntity(client, self, "llc_status", "LLC Status", False),
 
-            MiscSensorEntity(client, self,  "inv_on_off", "Inverter On/Off Status"),
-            DeciwattsSensorEntity(client, self,  "inv_output_watts", "Inverter Output Watts"),
-            DecivoltSensorEntity(client, self,  "inv_input_volt", "Inverter Output Potential", False),
-            DecivoltSensorEntity(client, self,  "inv_op_volt", "Inverter Op Potential"),
-            AmpSensorEntity(client, self,  "inv_output_cur", "Inverter Output Current"),
-            AmpSensorEntity(client, self,  "inv_dc_cur", "Inverter DC Current"),
-            DecihertzSensorEntity(client, self,  "inv_freq", "Inverter Frequency"),
-            DecicelsiusSensorEntity(client, self,  "inv_temp", "Inverter Temperature"),
-            MiscSensorEntity(client, self,  "inv_relay_status", "Inverter Relay Status"),
-            MiscSensorEntity(client, self,  "inv_error_code", "Inverter Error Code", False),
-            MiscSensorEntity(client, self,  "inv_warning_code", "Inverter Warning Code", False),
-            MiscSensorEntity(client, self,  "inv_status", "Inverter Status", False),
+            MiscSensorEntity(client, self, "inv_on_off", "Inverter On/Off Status"),
+            DeciwattsSensorEntity(client, self, "inv_output_watts", "Inverter Output Watts"),
+            DecivoltSensorEntity(client, self, "inv_input_volt", "Inverter Output Potential", False),
+            DecivoltSensorEntity(client, self, "inv_op_volt", "Inverter Op Potential"),
+            AmpSensorEntity(client, self, "inv_output_cur", "Inverter Output Current"),
+            AmpSensorEntity(client, self, "inv_dc_cur", "Inverter DC Current"),
+            DecihertzSensorEntity(client, self, "inv_freq", "Inverter Frequency"),
+            DecicelsiusSensorEntity(client, self, "inv_temp", "Inverter Temperature"),
+            MiscSensorEntity(client, self, "inv_relay_status", "Inverter Relay Status"),
+            MiscSensorEntity(client, self, "inv_error_code", "Inverter Error Code", False),
+            MiscSensorEntity(client, self, "inv_warning_code", "Inverter Warning Code", False),
+            MiscSensorEntity(client, self, "inv_status", "Inverter Status", False),
 
-            DeciwattsSensorEntity(client, self,  "permanent_watts", "Other Loads"),
-            DeciwattsSensorEntity(client, self,  "dynamic_watts", "Smart Plug Loads"),
-            DeciwattsSensorEntity(client, self,  "rated_power", "Rated Power"),
+            DeciwattsSensorEntity(client, self, "permanent_watts", "Other Loads"),
+            DeciwattsSensorEntity(client, self, "dynamic_watts", "Smart Plug Loads"),
+            DeciwattsSensorEntity(client, self, "rated_power", "Rated Power"),
 
-            MiscSensorEntity(client, self,  "lower_limit", "Lower Battery Limit", False),
-            MiscSensorEntity(client, self,  "upper_limit", "Upper Battery Limit", False),
-            MiscSensorEntity(client, self,  "wireless_error_code", "Wireless Error Code", False),
-            MiscSensorEntity(client, self,  "wireless_warning_code", "Wireless Warning Code", False),
-            MiscSensorEntity(client, self,  "inv_brightness", "LED Brightness", False),
-            MiscSensorEntity(client, self,  "heartbeat_frequency", "Heartbeat Frequency", False),
+            MiscSensorEntity(client, self, "lower_limit", "Lower Battery Limit", False),
+            MiscSensorEntity(client, self, "upper_limit", "Upper Battery Limit", False),
+            MiscSensorEntity(client, self, "wireless_error_code", "Wireless Error Code", False),
+            MiscSensorEntity(client, self, "wireless_warning_code", "Wireless Warning Code", False),
+            MiscSensorEntity(client, self, "inv_brightness", "LED Brightness", False),
+            MiscSensorEntity(client, self, "heartbeat_frequency", "Heartbeat Frequency", False),
 
             ReconnectStatusSensorEntity(client, self)
         ]
-
 
     def numbers(self, client: EcoflowApiClient) -> list[BaseNumberEntity]:
         return [
@@ -113,7 +113,7 @@ class PowerOcean(BaseDevice):
         raw = {"params": {}}
         from .proto import ecopacket_pb2 as ecopacket, powerocean_pb2 as powerocean
         try:
-            payload =raw_data
+            payload = raw_data
 
             while True:
                 packet = ecopacket.SendHeaderMsg()
@@ -125,7 +125,7 @@ class PowerOcean(BaseDevice):
                     _LOGGER.info("Unsupported EcoPacket cmd id %u", packet.msg.cmd_id)
 
                 else:
-                    heartbeat = powerocean.EmsCmdIdHeartbeatReport()
+                    heartbeat = powerocean.HeartbeatReport()
                     heartbeat.ParseFromString(packet.msg.pdata)
 
                     for descriptor in heartbeat.DESCRIPTOR.fields:
@@ -151,4 +151,3 @@ class PowerOcean(BaseDevice):
             _LOGGER.info(raw_data.hex())
 
         return raw
-

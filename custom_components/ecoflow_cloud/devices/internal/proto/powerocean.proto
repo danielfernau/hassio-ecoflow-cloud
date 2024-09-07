@@ -113,7 +113,7 @@ syntax = "proto3";
 // t[e[194] = "EMS_CMD_ID_PARALLEL_CFG_EMS_SYNC"] = 194,
 // t[e[195] = "EMS_CMD_ID_REQ_DATA"] = 195,
 
-message EmsCmdIdHeartbeatReport {
+message HeartbeatReport {
     // cmdFunc: 96, cmdId: 1
     float bpRemainWatth = 1;
     uint32 bpDsgTime = 2;
@@ -233,7 +233,7 @@ message EmsCmdIdHeartbeatReport {
     float pcsBackupPwr = 109;
 }
 
-message EmsCmdIdBpHeartbeatReport {
+message BpHeartbeatReport {
     // cmdFunc: 96, cmdId: 7
     repeated int32 bytes_1 = 1;
     int32 int_2 = 2;
@@ -252,7 +252,7 @@ message EmsCmdIdBpHeartbeatReport {
     string moduleSn = 15;
 }
 
-message EmsCmdIdChangeReport {
+message ChangeReport {
     // cmdFunc: 96, cmdId: 8
     bytes pdata = 1;
     uint32 src = 2;
@@ -281,7 +281,7 @@ message EmsCmdIdChangeReport {
     string deviceSn = 25;
 }
 
-message EmsCmdIdEnergyStreamReportParallel {
+message EnergyStreamReportParallel {
     // cmdFunc: 96, cmdId: 50
     // topic /app/device/property/HJ37ZDH5ZG4C0054
     // mpptPwr, float, 97.1748046875
