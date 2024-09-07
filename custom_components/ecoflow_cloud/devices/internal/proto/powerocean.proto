@@ -252,6 +252,18 @@ message BpHeartbeatReport {
     optional string moduleSn = 15;
 }
 
+message ParamChangeReport {
+    // cmdFunc: 96, cmdId: 13
+    optional bool smartCtrl = 1;
+    optional bool energyEfficientEnable = 2;
+    optional uint32 sysZone = 3;
+    optional uint32 sysTimeTab = 4;
+    optional bool bpBurst = 5;
+    optional bool lowerPowerStat = 6;
+    optional uint32 breakerCapacityMax = 7;
+    optional bool breakerEnableState = 8;
+}
+
 message ChangeReport {
     // cmdFunc: 96, cmdId: 8
     optional uint32 sysWorkSta = 1;

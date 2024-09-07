@@ -121,14 +121,15 @@ class PowerOcean(BaseDevice):
 
                 _LOGGER.debug("cmd id %u payload \"%s\"", packet.msg.cmd_id, payload.hex())
 
-                if packet.msg.cmd_id not in [1, 7, 8]:
+                if packet.msg.cmd_id not in [1, 7, 8, 13]:
                     _LOGGER.info("Unsupported EcoPacket cmd id %u", packet.msg.cmd_id)
 
                 else:
                     proto_message_types = {
                         1: powerocean.HeartbeatReport(),
                         7: powerocean.BpHeartbeatReport(),
-                        8: powerocean.ChangeReport()
+                        8: powerocean.ChangeReport(),
+                        13: powerocean.ParamChangeReport()
                     }
 
                     _LOGGER.debug("pdata %s", packet.msg.pdata)
