@@ -131,6 +131,8 @@ class PowerOcean(BaseDevice):
                         8: powerocean.ChangeReport()
                     }
 
+                    _LOGGER.debug("pdata %s", packet.msg.pdata)
+
                     heartbeat = proto_message_types[packet.msg.cmd_id]  # select correct message type based on cmd_id
                     heartbeat.ParseFromString(packet.msg.pdata)
 
