@@ -121,11 +121,17 @@ class PowerOcean(BaseDevice):
 
                 _LOGGER.debug("cmd id %u payload \"%s\"", packet.msg.cmd_id, payload.hex())
 
-                if packet.msg.cmd_id != 1:
+                if packet.msg.cmd_id not in [1, 7, 8]:
                     _LOGGER.info("Unsupported EcoPacket cmd id %u", packet.msg.cmd_id)
 
                 else:
-                    heartbeat = powerocean.HeartbeatReport()
+                    proto_message_types = {
+                        1: powerocean.HeartbeatReport(),
+                        7: powerocean.BpHeartbeatReport(),
+                        8: powerocean.ChangeReport()
+                    }
+
+                    heartbeat = proto_message_types[packet.msg.cmd_id]  # select correct message type based on cmd_id
                     heartbeat.ParseFromString(packet.msg.pdata)
 
                     for descriptor in heartbeat.DESCRIPTOR.fields:
